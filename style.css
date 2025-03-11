@@ -1,3 +1,94 @@
-.student-container{
-    border: solid 1px red;
+body {
+    padding: 0;
+    margin: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    overflow: hidden; /* no scrollbar wow */
+    position: relative;
+}
+
+.background-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1; /* posiziona in fondo! */
+}
+
+#bg-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: translate(-50%, -50%);
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 150px;
+    color: #ffffff;
+    z-index: 1; /* posiziona sopra al resto il contenuto! */
+    position: relative;
+}
+
+#students-container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, auto);
+    gap: 10px;
+    padding: 0 20px;
+    box-sizing: border-box;
+    z-index: 1;
+    position: relative;
+}
+
+.student-container, .student-container2 {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+        "name"
+        "country"
+        "gender"
+        "age";
+    gap: 5px;
+    text-align: center;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    padding: 10px;
+}
+
+.name-container {
+    font-size: large;
+    font-weight: bold;
+    grid-area: name;
+}
+
+.country-container {
+    grid-area: country;
+}
+
+.gender-container {
+    grid-area: gender;
+}
+
+.age-container {
+    grid-area: age;
+}
+
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 150px;
+    color: #ffffff;
+    z-index: 1;
+    position: relative;
 }

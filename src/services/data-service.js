@@ -4,103 +4,103 @@ export default class dataService {
 
     getStudentData() {
         const data = [
-            {
-                "name": "lorenzo",
-                "surname": "puppo",
-                "yob": 1995,
-                "nationality": "italy",
-                "gender": "m",
-                "marks": [
-                    8,
-                    9,
-                    10
-                ]
-            },
-            {
-                "name": "jan",
-                "surname": "stigliani",
-                "yob": 2000,
-                "nationality": "italy",
-                "gender": "m",
-                "marks": [
-                    7,
-                    7,
-                    8
-                ]
-            },
-            {
-                "name": "giovanni",
-                "surname": "sussarellu",
-                "yob": 1981,
-                "nationality": "italy",
-                "gender": "m",
-                "marks": [
-                    7,
-                    6,
-                    8
-                ]
-            },
-            {
-                "name": "sara",
-                "surname": "de prà",
-                "yob": 1989,
-                "nationality": "italy",
-                "gender": "fluid",
-                "marks": [
-                    9,
-                    6,
-                    8
-                ]
-            },
-            {
-                "name": "jeremias",
-                "surname": "cedeno",
-                "yob": 2003,
-                "nationality": "ecuador",
-                "gender": "m",
-                "marks": [
-                    6,
-                    10,
-                    7
-                ]
-            },
-            {
-                "name": "laura",
-                "surname": "mazza",
-                "yob": 1984,
-                "nationality": "italy",
-                "gender": "f",
-                "marks": [
-                    4,
-                    2,
-                    6
-                ]
-            },
-            {
-                "name": "eusebio",
-                "surname": "veizi",
-                "yob": 1993,
-                "nationality": "albanese",
-                "gender": "peanut",
-                "marks": [
-                    5,
-                    7,
-                    6
-                ]
-            },
-            {
-                "name": "hugo",
-                "surname": "martinez",
-                "yob": 1994,
-                "nationality": "elSalvador",
-                "gender": "f",
-                "marks": [
-                    10,
-                    10,
-                    8
-                ]
-            }
-        ];
+			{
+				"name": "Lorenzo",
+				"surname": "Puppo",
+				"yob": 1995,
+				"nationality": "Italy",
+				"gender": "M",
+				"marks": [
+					8,
+					9,
+					10
+				]
+			},
+			{
+				"name": "Jan",
+				"surname": "Stigliani",
+				"yob": 2000,
+				"nationality": "Italy",
+				"gender": "M",
+				"marks": [
+					7,
+					7,
+					8
+				]
+			},
+			{
+				"name": "Giovanni",
+				"surname": "Sussarellu",
+				"yob": 1981,
+				"nationality": "Italy",
+				"gender": "M",
+				"marks": [
+					7,
+					6,
+					8
+				]
+			},
+			{
+				"name": "Sara",
+				"surname": "De Prà",
+				"yob": 1989,
+				"nationality": "Italy",
+				"gender": "Fluid",
+				"marks": [
+					9,
+					6,
+					8
+				]
+			},
+			{
+				"name": "Jeremias",
+				"surname": "Cedeno",
+				"yob": 2003,
+				"nationality": "Ecuador",
+				"gender": "M",
+				"marks": [
+					6,
+					10,
+					7
+				]
+			},
+			{
+				"name": "Laura",
+				"surname": "Mazza",
+				"yob": 1984,
+				"nationality": "Italy",
+				"gender": "F",
+				"marks": [
+					4,
+					2,
+					6
+				]
+			},
+			{
+				"name": "Eusebio",
+				"surname": "Veizi",
+				"yob": 1993,
+				"nationality": "Albanese",
+				"gender": "Peanut",
+				"marks": [
+					5,
+					7,
+					6
+				]
+			},
+			{
+				"name": "Hugo",
+				"surname": "Martinez",
+				"yob": 1994,
+				"nationality": "ElSalvador",
+				"gender": "F",
+				"marks": [
+					10,
+					10,
+					8
+				]
+			}
+		];
         return data;
     }
 }

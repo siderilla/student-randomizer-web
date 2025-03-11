@@ -4,51 +4,79 @@ const service = new dataService();
 
 const studentData = service.getStudentData();
 
+studentData.sort((a, b) => a.name.localeCompare(b.name));
+
 const container = document.getElementById('students-container');
 
 for (let i = 0; i < studentData.length; i++) {
-
     const student = studentData[i];
 
     const studentContainer = document.createElement('div');
-    // .innerHTML
-    // .textContent
-    studentContainer.classList.add('student-container');
+    if(i%2 === 0){
+        studentContainer.classList.add('student-container');
+    } else {
+        studentContainer.classList.add('student-container2');
+    }
 
-    const nameContainer = document.createElement('h3');
-    // nameContainer.innerText = student.name + ' ' + student.surname;
+    const nameContainer = document.createElement('span');
+    nameContainer.classList.add('name-container');
     const nameNode = document.createTextNode(student.name + ' ' + student.surname);
     nameContainer.appendChild(nameNode);
 
     const countryContainer = document.createElement('span');
-    // countryContainer.innerText = "Nazionalità: " + student.nationality;
-    const countryNode = document.createTextNode("Nazionalità: " + student.nationality);
+    countryContainer.classList.add('country-container');
+    const countryNode = document.createTextNode('Nazionalità: ' + student.nationality);
     countryContainer.appendChild(countryNode);
 
     const genderContainer = document.createElement('span');
-    const genderNode = document.createTextNode("Genere: " + student.gender);
-    genderContainer.appendChild()
+    genderContainer.classList.add('gender-container');
+    const genderNode = document.createTextNode('Gender: ' + student.gender);
+    genderContainer.appendChild(genderNode);
 
+    const now = new Date();
+    const year = now.getFullYear();
+    const age = year - student.yob;
+    const ageContainer = document.createElement('span');
+    ageContainer.classList.add('age-container');
+    const ageNode = document.createTextNode('Age: ' + age);
+    ageContainer.appendChild(ageNode);
 
     studentContainer.appendChild(nameContainer);
     studentContainer.appendChild(countryContainer);
+    studentContainer.appendChild(genderContainer);
+    studentContainer.appendChild(ageContainer);
+
     container.appendChild(studentContainer);
 }
 
-// const student1 = studentData[0];
+//// random background color palette
+function getRandomColor() {
+    const r = Math.floor(Math.random() * 256);
+    const g = Math.floor(Math.random() * 256);
+    const b = Math.floor(Math.random() * 256);
+    return `rgb(${r}, ${g}, ${b})`;
+}
+
+const randomColor = getRandomColor();
+document.body.style.backgroundColor = randomColor;
 
 
-///////////////// 1 /////////////////
+///////////////// 1 ///////////////// 
 // aggiungere genere
+// FATTO
 
 ///////////////// 2 /////////////////
 // aggiungere età
+// FATTO
 
 ///////////////// 3 /////////////////
 // allineare le schede degli studenti due a due
+// FATTO
 
 ///////////////// 4 /////////////////
 // rendere il sito molto bello per il docente
+// BOH
 
 ///////////////// 5 /////////////////
 // ordinare studenti alfabeticamente by name
+// FATTO
