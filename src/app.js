@@ -4,6 +4,7 @@ const service = new dataService();
 
 const studentData = service.getStudentData();
 
+// funzione sort per ordinare alfabeticamente
 studentData.sort((a, b) => a.name.localeCompare(b.name));
 
 const container = document.getElementById('students-container');
