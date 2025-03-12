@@ -30,10 +30,27 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 150px;
+    height: 10%;
     color: #ffffff;
     z-index: 1; /* posiziona l'elemento corrente sopra agli altri! */
     position: relative;
+}
+
+#buttons-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: #ffffff;  
+    margin-bottom: 2%;  
+}
+
+.button {
+    background-color: #ffffff;
+    color: black;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-style: none;
 }
 
 #students-container {
