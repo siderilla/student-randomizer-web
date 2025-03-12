@@ -114,14 +114,56 @@ export default class dataService {
         // // return data;
     }
 
-	getStudentsByName() {
+	getStudentsByAge() {
 
 		const students = this.getStudentData();
 		const studentsClone = students.slice();
 
+		studentsClone.sort((s1, s2) => s1.compareByAge(s2));
+
+		return studentsClone;
+	}
+
+	getStudentsByName() {
+
+		const students = this.getStudentData();
+		const studentsClone = students.slice();
 		studentsClone.sort((s1, s2) => s1.compareByName(s2));
 
 		return studentsClone;
+	}
+
+	getShuffledStudents() {
+
+		const students = this.getStudentData();
+		const studentsClone = students.slice();
+
+		const shuffledStudents = this.shuffleArray(studentsClone);
+
+		return shuffledStudents;
+
+	}
+
+	shuffleArray(array) {
+
+		// const newArray = array.slice();
+		// // tre tipi di ritorno la funzione .sort negativo, positivo o 0
+		// // va bene per array piccoli, quelli molto (ma molto) grandi invece ci metterebbe un'eternità
+		// newArray.sort(() => Math.random() - 0.5);
+		// return newArray;
+
+		const cloneArray = array.slice();
+		const newArray = [];
+
+		while (cloneArray.length > 0) {
+			const randomIndex = Math.round(Math.random() * (cloneArray.length - 1));
+			// const randomStudent = cloneArray[randomIndex];
+			// newArray.push(randomStudent);
+			// cloneArray.splice(randomIndex, 1);
+			const randomStudent = cloneArray.splice(randomIndex, 1)[0];
+			newArray.push(randomStudent);
+		}
+		return newArray;
 	}
 
 	createStudentFromRowData(data) {

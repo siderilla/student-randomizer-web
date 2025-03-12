@@ -2,7 +2,10 @@ import dataService from "./services/data-service.js";
 
 const service = new dataService();
 
-const studentData = service.getStudentsByName();
+// const studentData = service.getStudentsByAge();
+// const studentData = service.getStudentsByName();
+const studentData = service.getShuffledStudents();
+
 
 // funzione sort per ordinare alfabeticamente
 // studentData.sort((a, b) => a.name.localeCompare(b.name));
