@@ -2,10 +2,10 @@ import dataService from "./services/data-service.js";
 
 const service = new dataService();
 
-const studentData = service.getStudentData();
+const studentData = service.getStudentsByName();
 
 // funzione sort per ordinare alfabeticamente
-studentData.sort((a, b) => a.name.localeCompare(b.name));
+// studentData.sort((a, b) => a.name.localeCompare(b.name));
 
 const container = document.getElementById('students-container');
 
@@ -34,12 +34,14 @@ for (let i = 0; i < studentData.length; i++) {
     const genderNode = document.createTextNode('Gender: ' + student.gender);
     genderContainer.appendChild(genderNode);
 
-    const now = new Date();
-    const year = now.getFullYear();
-    const age = year - student.yob;
+    // const now = new Date();
+    // const year = now.getFullYear();
+    // const age = year - student.yob;
+    // const ageNode = document.createTextNode('Age: ' + age);
+    
     const ageContainer = document.createElement('span');
     ageContainer.classList.add('age-container');
-    const ageNode = document.createTextNode('Age: ' + age);
+    const ageNode = document.createTextNode('Age: ' + student.getAge());
     ageContainer.appendChild(ageNode);
 
     studentContainer.appendChild(nameContainer);

@@ -1,3 +1,5 @@
+import Student from "../model/student.js";
+
 export default class dataService {
 
     constructor() {}
@@ -101,6 +103,60 @@ export default class dataService {
 				]
 			}
 		];
-        return data;
+
+		// const orderedData = this.sortStudent
+
+		const students = this.createStudentFromRowData(data);
+		return students;
+
+		// const richData = this.addAge(data);
+		// return richData;
+        // // return data;
     }
+
+	getStudentsByName() {
+
+		const students = this.getStudentData();
+		const studentsClone = students.slice();
+
+		studentsClone.sort((s1, s2) => s1.compareByName(s2));
+
+		return studentsClone;
+	}
+
+	createStudentFromRowData(data) {
+
+		const students = [];
+		for (let i = 0; i < data.length; i++) {
+			const element = data[i];
+			// così creo l'istanza per ciascuno studente
+			const newStudent = new Student(element.name, element.surname, element.yob, element.gender, element.nationality, element.marks);
+			students.push(newStudent);
+		}
+
+		return students;
+
+	}
+
+	calculateAge(yob) {
+		const now = new Date();
+			const actualYear = now.getFullYear();
+			const age = actualYear - yob;
+			return age;
+	}
+
+	// addAge(studentArray) {
+	// 	// creo una nuova costante che prenderà il valore yob nell'array di ciascun studente
+	// 	const newData = studentArray.map(student => {
+	// 		// const now = new Date();
+	// 		// const actualYear = now.getFullYear();
+	// 		// const age = actualYear - student.yob;
+	// 		// student.age = age;
+	// 		student.age = this.calculateAge(student.yob);
+	// 		return student;
+	// 	})
+
+	// 	return newData;
+	// }
+
 }
