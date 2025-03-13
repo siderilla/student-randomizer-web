@@ -4,110 +4,41 @@ export default class dataService {
 
     constructor() {}
 
-    getStudentData() {
-        const data = [
-			{
-				"name": "Lorenzo",
-				"surname": "Puppo",
-				"yob": 1995,
-				"nationality": "Italy",
-				"gender": "M",
-				"marks": [
-					8,
-					9,
-					10
-				]
-			},
-			{
-				"name": "Jan",
-				"surname": "Stigliani",
-				"yob": 2000,
-				"nationality": "Italy",
-				"gender": "M",
-				"marks": [
-					7,
-					7,
-					8
-				]
-			},
-			{
-				"name": "Giovanni",
-				"surname": "Sussarellu",
-				"yob": 1981,
-				"nationality": "Italy",
-				"gender": "M",
-				"marks": [
-					7,
-					6,
-					8
-				]
-			},
-			{
-				"name": "Sara",
-				"surname": "De Prà",
-				"yob": 1989,
-				"nationality": "Italy",
-				"gender": "Fluid",
-				"marks": [
-					9,
-					6,
-					8
-				]
-			},
-			{
-				"name": "Jeremias",
-				"surname": "Cedeno",
-				"yob": 2003,
-				"nationality": "Ecuador",
-				"gender": "M",
-				"marks": [
-					6,
-					10,
-					7
-				]
-			},
-			{
-				"name": "Laura",
-				"surname": "Mazza",
-				"yob": 1984,
-				"nationality": "Italy",
-				"gender": "F",
-				"marks": [
-					4,
-					2,
-					6
-				]
-			},
-			{
-				"name": "Eusebio",
-				"surname": "Veizi",
-				"yob": 1993,
-				"nationality": "Albanese",
-				"gender": "Peanut",
-				"marks": [
-					5,
-					7,
-					6
-				]
-			},
-			{
-				"name": "Hugo",
-				"surname": "Martinez",
-				"yob": 1994,
-				"nationality": "ElSalvador",
-				"gender": "F",
-				"marks": [
-					10,
-					10,
-					8
-				]
-			}
-		];
+	// useResponse(response) {
+	// 	const jsonPromise = response.json();
+	// 	jsonPromise.then((json) => console.log(json));
+	// 	jsonPromise.catch((error) => console.log(error));
+	// }
+
+	// handleError(response) {
+	// 	console.log('suca', response);
+	// }
+
+    async getStudentData() {
+
+        // const responsePromise = fetch("../../assets/students.json")
+
+		// responsePromise.then(this.useResponse);
+		// responsePromise.catch(this.handleError);
+
+		// ("/assets/students.json") - url relativo
+		// ("http://127.0.0.1:5500/assets/students.json") - url assoluto
 
 		// const orderedData = this.sortStudent
 
-		const students = this.createStudentFromRowData(data);
-		return students;
+		const studentsPromise = fetch("../../assets/students.json")
+		.then(resp => resp.json())
+		.then(jsonData => {
+			const students = this.createStudentFromRowData(jsonData);
+		   	console.log(students);
+			return students;
+		}) // promise di studenti
+		.catch(error => console.log(error));
+
+		return studentsPromise;
+
+		// const students = this.createStudentFromRowData(data);
+		// return students;
 
 		// const richData = this.addAge(data);
 		// return richData;
@@ -115,27 +46,24 @@ export default class dataService {
     }
 
 	getStudentsByAge() {
-
-		const students = this.getStudentData();
-		const studentsClone = students.slice();
-
-		studentsClone.sort((s1, s2) => s1.compareByAge(s2));
-
-		return studentsClone;
+		return this.getStudentData().then(students => {
+			const studentsClone = students.slice();
+			studentsClone.sort((s1, s2) => s1.compareByAge(s2));
+			return studentsClone;
+		})
 	}
 
 	getStudentsByName() {
-
-		const students = this.getStudentData();
-		const studentsClone = students.slice();
-		studentsClone.sort((s1, s2) => s1.compareByName(s2));
-
-		return studentsClone;
+		return this.getStudentData().then(students => {
+			const studentsClone = students.slice();
+			studentsClone.sort((s1, s2) => s1.compareByName(s2));
+			return studentsClone;
+		})
 	}
 
-	getShuffledStudents() {
+	async getShuffledStudents() {
 
-		const students = this.getStudentData();
+		const students = await this.getStudentData();
 		const studentsClone = students.slice();
 
 		const shuffledStudents = this.shuffleArray(studentsClone);
