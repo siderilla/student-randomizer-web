@@ -26,13 +26,6 @@ window.orderByAge = orderByAge;
 window.shuffle = shuffle;
 window.getStudents = getStudents;
 
-// const studentData = service.getStudentsByAge();
-// const studentData = service.getStudentsByName();
-// const studentData = service.getShuffledStudents();
-
-// funzione sort per ordinare alfabeticamente
-// studentData.sort((a, b) => a.name.localeCompare(b.name));
-
 function render(studentData) {
     const container = document.getElementById('students-container');
 
@@ -49,37 +42,14 @@ function render(studentData) {
         }
         
         const nameContainer = createTextElement('span', student.name + ' ' + student.surname);
-
-        // const nameContainer = document.createElement('span');
-        // nameContainer.classList.add('name-container');
-        // const nameNode = document.createTextNode(student.name + ' ' + student.surname);
-        // nameContainer.appendChild(nameNode);
-
         const countryContainer = createTextElement('span', 'Nazionalità: ' + student.nationality);
-    
-        // const countryContainer = document.createElement('span');
-        // countryContainer.classList.add('country-container');
-        // const countryNode = document.createTextNode('Nazionalità: ' + student.nationality);
-        // countryContainer.appendChild(countryNode);
-
         const genderContainer = createTextElement('span', 'Gender: ' + student.gender);
-
-        // const genderContainer = document.createElement('span');
-        // genderContainer.classList.add('gender-container');
-        // const genderNode = document.createTextNode('Gender: ' + student.gender);
-        // genderContainer.appendChild(genderNode);
-
         const ageContainer = createTextElement('span', 'Age: ' + student.getAge());
-    
-        // const now = new Date();
-        // const year = now.getFullYear();
-        // const age = year - student.yob;
-        // const ageNode = document.createTextNode('Age: ' + age);
-        
-        // const ageContainer = document.createElement('span');
-        // ageContainer.classList.add('age-container');
-        // const ageNode = document.createTextNode('Age: ' + student.getAge());
-        // ageContainer.appendChild(ageNode);
+
+		const deleteBtn = document.createElement('button');
+        deleteBtn.textContent = 'Elimina';
+        deleteBtn.addEventListener('click', () => deleteStudent(i));
+        studentContainer.appendChild(deleteBtn);
     
         studentContainer.appendChild(nameContainer);
         studentContainer.appendChild(countryContainer);
@@ -90,6 +60,18 @@ function render(studentData) {
     }
 }
 
+function deleteStudent(index) {
+    const stored = localStorage.getItem('students');
+    if (!stored) return;
+
+    const students = JSON.parse(stored);
+    students.splice(index, 1);                    // rimuovi l’elemento
+    localStorage.setItem('students', JSON.stringify(students));
+    getStudents();                                // aggiorna la lista sullo schermo
+}
+
+window.deleteStudent = deleteStudent;
+
 function createTextElement(elementType, text) {
 
     const element = document.createElement(elementType);
@@ -98,6 +80,8 @@ function createTextElement(elementType, text) {
     return element;
 
 }
+
+document.addEventListener('DOMContentLoaded', getStudents);
 
 //// random background color palette
 function getRandomColor() {
@@ -109,24 +93,3 @@ function getRandomColor() {
 
 const randomColor = getRandomColor();
 document.body.style.backgroundColor = randomColor;
-
-
-///////////////// 1 ///////////////// 
-// aggiungere genere
-// FATTO
-
-///////////////// 2 /////////////////
-// aggiungere età
-// FATTO
-
-///////////////// 3 /////////////////
-// allineare le schede degli studenti due a due
-// FATTO
-
-///////////////// 4 /////////////////
-// rendere il sito molto bello per il docente
-// BOH
-
-///////////////// 5 /////////////////
-// ordinare studenti alfabeticamente by name
-// FATTO

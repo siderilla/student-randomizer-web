@@ -4,45 +4,29 @@ export default class dataService {
 
     constructor() {}
 
-	// useResponse(response) {
-	// 	const jsonPromise = response.json();
-	// 	jsonPromise.then((json) => console.log(json));
-	// 	jsonPromise.catch((error) => console.log(error));
-	// }
-
-	// handleError(response) {
-	// 	console.log('suca', response);
-	// }
-
     async getStudentData() {
-
-        // const responsePromise = fetch("../../assets/students.json")
-
-		// responsePromise.then(this.useResponse);
-		// responsePromise.catch(this.handleError);
-
-		// ("/assets/students.json") - url relativo
-		// ("http://127.0.0.1:5500/assets/students.json") - url assoluto
-
-		// const orderedData = this.sortStudent
-
-		const studentsPromise = fetch("../../assets/students.json")
-		.then(resp => resp.json())
-		.then(jsonData => {
-			const students = this.createStudentFromRowData(jsonData);
-		   	console.log(students);
-			return students;
-		}) // promise di studenti
-		.catch(error => console.log(error));
-
-		return studentsPromise;
-
-		// const students = this.createStudentFromRowData(data);
-		// return students;
-
-		// const richData = this.addAge(data);
-		// return richData;
-        // // return data;
+		const storedStudents = localStorage.getItem('students');
+		if (storedStudents) {
+			// se gli studenti sono già nel localstorage, faccio il parse del json
+			const students = JSON.parse(storedStudents);
+			return this.createStudentFromRowData(students);
+		} else {
+			// altrimenti faccio la fetch normale
+			const studentsPromise = fetch("../../assets/students.json")
+			.then(resp => resp.json())
+			.then(jsonData => {
+				// salvo la stringa JSON in localstorage
+				localStorage.setItem('students', JSON.stringify(jsonData));
+	
+				const students = this.createStudentFromRowData(jsonData);
+				console.log(students);
+				return students; // promise di studenti
+	
+			})
+			.catch(error => console.log(error));
+	
+			return studentsPromise;
+		}
     }
 
 	getStudentsByAge() {
@@ -74,20 +58,11 @@ export default class dataService {
 
 	shuffleArray(array) {
 
-		// const newArray = array.slice();
-		// // tre tipi di ritorno la funzione .sort negativo, positivo o 0
-		// // va bene per array piccoli, quelli molto (ma molto) grandi invece ci metterebbe un'eternità
-		// newArray.sort(() => Math.random() - 0.5);
-		// return newArray;
-
 		const cloneArray = array.slice();
 		const newArray = [];
 
 		while (cloneArray.length > 0) {
 			const randomIndex = Math.round(Math.random() * (cloneArray.length - 1));
-			// const randomStudent = cloneArray[randomIndex];
-			// newArray.push(randomStudent);
-			// cloneArray.splice(randomIndex, 1);
 			const randomStudent = cloneArray.splice(randomIndex, 1)[0];
 			newArray.push(randomStudent);
 		}
@@ -114,19 +89,4 @@ export default class dataService {
 			const age = actualYear - yob;
 			return age;
 	}
-
-	// addAge(studentArray) {
-	// 	// creo una nuova costante che prenderà il valore yob nell'array di ciascun studente
-	// 	const newData = studentArray.map(student => {
-	// 		// const now = new Date();
-	// 		// const actualYear = now.getFullYear();
-	// 		// const age = actualYear - student.yob;
-	// 		// student.age = age;
-	// 		student.age = this.calculateAge(student.yob);
-	// 		return student;
-	// 	})
-
-	// 	return newData;
-	// }
-
 }

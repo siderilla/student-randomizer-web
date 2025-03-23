@@ -1,4 +1,5 @@
-class Student {
+export default class Student {
+
     constructor(name, surname, yob, gender, nationality, marks = []) {
         this.name = name;
         this.surname = surname;
@@ -28,5 +29,3 @@ class Student {
     }
 
 }
-
-export default Student;
