@@ -49,12 +49,19 @@ function render(studentData) {
 		const deleteBtn = document.createElement('button');
         deleteBtn.textContent = 'Elimina';
         deleteBtn.addEventListener('click', () => deleteStudent(i));
-        studentContainer.appendChild(deleteBtn);
-    
+
+		const editBtn = document.createElement('button');
+		editBtn.textContent = 'Modifica';
+		editBtn.addEventListener('click', () => {
+			window.location.href = `student-card.html?index=${i}`;
+		  });
+
         studentContainer.appendChild(nameContainer);
         studentContainer.appendChild(countryContainer);
         studentContainer.appendChild(genderContainer);
         studentContainer.appendChild(ageContainer);
+        studentContainer.appendChild(deleteBtn);
+		studentContainer.appendChild(editBtn);
     
         container.appendChild(studentContainer);
     }

@@ -29,7 +29,6 @@
 # quando viene cliccato il tasto aggiungi studente, apri nuova pagina con una form che consente di aggiungere uno studente
 # e salvarlo nell'array contenuto nel localstorage
 
-
 # 3) aggiungere funzione edita studente che aggiunge un bottone per ogni card studente
 # se premo il tasto edit si apre una nuova forma con i campi precompilati con i dati dello studente
 # salvato lo studente editato, sovrascrive i dati precedenti

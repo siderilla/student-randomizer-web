@@ -4,7 +4,7 @@ export default class dataService {
 
     constructor() {}
 
-    async getStudentData() {
+	async getStudentData() {
 		const storedStudents = localStorage.getItem('students');
 		if (storedStudents) {
 			// se gli studenti sono già nel localstorage, faccio il parse del json
@@ -12,22 +12,23 @@ export default class dataService {
 			return this.createStudentFromRowData(students);
 		} else {
 			// altrimenti faccio la fetch normale
-			const studentsPromise = fetch("../../assets/students.json")
-			.then(resp => resp.json())
-			.then(jsonData => {
-				// salvo la stringa JSON in localstorage
-				localStorage.setItem('students', JSON.stringify(jsonData));
+			const studentsPromise = fetch("./assets/students.json")
+				.then(resp => resp.json())
+				.then(jsonData => {
+					// salvo la stringa JSON in localstorage
+					localStorage.setItem('students', JSON.stringify(jsonData));
 	
-				const students = this.createStudentFromRowData(jsonData);
-				console.log(students);
-				return students; // promise di studenti
-	
-			})
-			.catch(error => console.log(error));
+					// creo e ritorno le istanze Student
+					const students = this.createStudentFromRowData(jsonData);
+					console.log(students);
+					return students; // promise di studenti
+				})
+				.catch(error => console.log("Errore fetch studenti:", error));
 	
 			return studentsPromise;
 		}
-    }
+	}
+	
 
 	getStudentsByAge() {
 		return this.getStudentData().then(students => {

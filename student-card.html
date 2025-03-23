@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Modifica Studente</title>
+	<link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+	<header></header>
+	<main>
+		<form id="edit-form">
+			<h3>Modifica Studente</h3>
+			<label>Nome: <input id="name" required></label><br>
+			<label>Cognome: <input id="surname" required></label><br>
+			<label>Anno di nascita: <input id="yob" type="number" required></label><br>
+			<label>Nazionalità: <input id="nationality" required></label><br>
+			<label>Gender: <input id="gender" required></label><br>
+			<button type="submit">Salva</button>
+			<button type="button" id="delete-btn">Elimina</button>
+			<button type="button" id="cancel-btn">Annulla</button>
+		</form>
+	</main>
+	<footer></footer>
+</body>
+<script type="module" src="./student-card.js"></script>
+
+</html>
